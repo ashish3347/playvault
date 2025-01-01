@@ -1,0 +1,35 @@
+Location test script 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Test</title>
+</head>
+<body>
+    <button id="getLocation">Get My Location</button>
+    <p id="output"></p>
+
+    <script>
+        document.getElementById('getLocation').addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        document.getElementById('output').textContent = 
+                            `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    },
+                    (error) => {
+                        document.getElementById('output').textContent = 
+                            `Error: ${error.message}`;
+                    }
+                );
+            } else {
+                document.getElementById('output').textContent = 
+                    'Geolocation is not supported by your browser.';
+            }
+        });
+    </script>
+</body>
+</html>
